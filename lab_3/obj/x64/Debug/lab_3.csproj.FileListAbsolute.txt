@@ -1,0 +1,17 @@
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\lab_3.exe.config
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\lab_3.exe
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\lab_3.pdb
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.FreeGlut.dll
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.OpenGl.dll
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.Platform.Windows.dll
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.FreeGlut.xml
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.OpenGl.xml
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\bin\x64\Debug\Tao.Platform.Windows.xml
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.Form1.resources
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.Properties.Resources.resources
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.csproj.Up2Date
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.exe
+\\Mac\Home\Desktop\CompGraph\tao\lab_3\lab_3\lab_3\obj\x64\Debug\lab_3.pdb
