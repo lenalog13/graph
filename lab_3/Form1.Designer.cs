@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AnT1 = new Tao.Platform.Windows.SimpleOpenGlControl();
             this.PointInGrap = new System.Windows.Forms.Timer(this.components);
-            this.AnT3 = new Tao.Platform.Windows.SimpleOpenGlControl();
             this.AnT2 = new Tao.Platform.Windows.SimpleOpenGlControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,43 +50,13 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.AnT1 = new Tao.Platform.Windows.SimpleOpenGlControl();
+            this.AnT3 = new Tao.Platform.Windows.SimpleOpenGlControl();
             this.SuspendLayout();
-            // 
-            // AnT1
-            // 
-            this.AnT1.AccumBits = ((byte)(0));
-            this.AnT1.AutoCheckErrors = false;
-            this.AnT1.AutoFinish = false;
-            this.AnT1.AutoMakeCurrent = true;
-            this.AnT1.AutoSwapBuffers = true;
-            this.AnT1.BackColor = System.Drawing.Color.Black;
-            this.AnT1.ColorBits = ((byte)(32));
-            this.AnT1.DepthBits = ((byte)(16));
-            this.AnT1.Location = new System.Drawing.Point(12, 12);
-            this.AnT1.Name = "AnT1";
-            this.AnT1.Size = new System.Drawing.Size(620, 352);
-            this.AnT1.StencilBits = ((byte)(0));
-            this.AnT1.TabIndex = 0;
             // 
             // PointInGrap
             // 
             this.PointInGrap.Tick += new System.EventHandler(this.PointInGrap_Tick);
-            // 
-            // AnT3
-            // 
-            this.AnT3.AccumBits = ((byte)(0));
-            this.AnT3.AutoCheckErrors = false;
-            this.AnT3.AutoFinish = false;
-            this.AnT3.AutoMakeCurrent = true;
-            this.AnT3.AutoSwapBuffers = true;
-            this.AnT3.BackColor = System.Drawing.Color.Black;
-            this.AnT3.ColorBits = ((byte)(32));
-            this.AnT3.DepthBits = ((byte)(16));
-            this.AnT3.Location = new System.Drawing.Point(12, 388);
-            this.AnT3.Name = "AnT3";
-            this.AnT3.Size = new System.Drawing.Size(620, 330);
-            this.AnT3.StencilBits = ((byte)(0));
-            this.AnT3.TabIndex = 1;
             // 
             // AnT2
             // 
@@ -269,11 +237,45 @@
             this.textBox8.Size = new System.Drawing.Size(230, 31);
             this.textBox8.TabIndex = 26;
             // 
+            // AnT1
+            // 
+            this.AnT1.AccumBits = ((byte)(0));
+            this.AnT1.AutoCheckErrors = false;
+            this.AnT1.AutoFinish = false;
+            this.AnT1.AutoMakeCurrent = true;
+            this.AnT1.AutoSwapBuffers = true;
+            this.AnT1.BackColor = System.Drawing.Color.Black;
+            this.AnT1.ColorBits = ((byte)(32));
+            this.AnT1.DepthBits = ((byte)(16));
+            this.AnT1.Location = new System.Drawing.Point(12, 23);
+            this.AnT1.Name = "AnT1";
+            this.AnT1.Size = new System.Drawing.Size(620, 346);
+            this.AnT1.StencilBits = ((byte)(0));
+            this.AnT1.TabIndex = 27;
+            // 
+            // AnT3
+            // 
+            this.AnT3.AccumBits = ((byte)(0));
+            this.AnT3.AutoCheckErrors = false;
+            this.AnT3.AutoFinish = false;
+            this.AnT3.AutoMakeCurrent = true;
+            this.AnT3.AutoSwapBuffers = true;
+            this.AnT3.BackColor = System.Drawing.Color.Black;
+            this.AnT3.ColorBits = ((byte)(32));
+            this.AnT3.DepthBits = ((byte)(16));
+            this.AnT3.Location = new System.Drawing.Point(12, 375);
+            this.AnT3.Name = "AnT3";
+            this.AnT3.Size = new System.Drawing.Size(620, 355);
+            this.AnT3.StencilBits = ((byte)(0));
+            this.AnT3.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 742);
+            this.Controls.Add(this.AnT3);
+            this.Controls.Add(this.AnT1);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
@@ -293,8 +295,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AnT2);
-            this.Controls.Add(this.AnT3);
-            this.Controls.Add(this.AnT1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -304,10 +304,7 @@
         }
 
         #endregion
-
-        private Tao.Platform.Windows.SimpleOpenGlControl AnT1;
         private System.Windows.Forms.Timer PointInGrap;
-        private Tao.Platform.Windows.SimpleOpenGlControl AnT3;
         private Tao.Platform.Windows.SimpleOpenGlControl AnT2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -328,6 +325,8 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
+        private Tao.Platform.Windows.SimpleOpenGlControl AnT1;
+        private Tao.Platform.Windows.SimpleOpenGlControl AnT3;
     }
 }
 

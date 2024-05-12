@@ -207,8 +207,6 @@ namespace lab_3
                 ScreenH = (maxX - minX) * 1.2;
             }
 
-
-
             Gl.glMatrixMode(Gl.GL_PROJECTION);
             Gl.glLoadIdentity();
             Glu.gluOrtho2D(0.0, ScreenW, 0.0, ScreenH);
@@ -301,8 +299,8 @@ namespace lab_3
             Gl.glColor3d(0, 0.5f, 1.0f);
             Gl.glRectd(0.5 * ScreenW, 0, ScreenW, Ek / maxEk * ScreenH);
             Gl.glColor3d(0, 1.0f, 0.5f);
-            label12.Text = $"{(int)Ep}";
-            label13.Text = $"{(int)Ek}";
+            label10.Text = $"{(int)Ep}";
+            label11.Text = $"{(int)Ek}";
 
             Gl.glPopMatrix();
 
@@ -404,197 +402,5 @@ namespace lab_3
 
         }
     }
-
-
-// функция визуализации текста 
-/*
-
-
-        // функция, производящая вычисления координат графика 
-        // и заносящая их в массив GrapValuesArray 
-        private void functionCalculation()
-        {
-
-            // определение локальных переменных X и Y 
-            float x = 0, y = 0;
-
-            // инициализация массива, который будет хранить значение 300 точек, 
-            // из которых будет состоять график 
-
-            GrapValuesArray = new float[300, 2];
-
-            // счетчик элементов массива 
-            elements_count = 0;
-
-            // вычисления всех значений y для x, принадлежащего промежутку от -15 до 15 с шагом в 0.01f 
-            for (x = -15; x < 15; x += 0.1f)
-            {
-                // вычисление y для текущего x 
-                // по формуле y = (float)Math.Sin(x)*3 + 1; 
-                // эта строка задает формулу, описывающую график функции для нашего уравнения y = f(x). 
-                y = (float)Math.Sin(x) * 3 + 1;
-
-                // запись координаты x 
-                GrapValuesArray[elements_count, 0] = x;
-                // запись координаты y 
-                GrapValuesArray[elements_count, 1] = y;
-                // подсчет элементов 
-                elements_count++;
-
-            }
-
-            // изменяем флаг, сигнализировавший о том, что координаты графика не вычислены 
-            not_calculate = false;
-
-        }
-
-    */
-
-    /*
-
-        private void DrawDiagram()
-        {
-
-            // проверка флага, сигнализирующего о том, что координаты графика вычислены 
-            if (not_calculate)
-            {
-                // если нет, то вызываем функцию вычисления координат графика 
-                functionCalculation();
-            }
-
-            // стартуем отрисовку в режиме визуализации точек 
-            // объединяемых в линии (GL_LINE_STRIP) 
-            Gl.glBegin(Gl.GL_LINE_STRIP);
-
-            // рисуем начальную точку 
-            Gl.glVertex2d(GrapValuesArray[0, 0], GrapValuesArray[0, 1]);
-
-            // проходим по массиву с координатами вычисленных точек 
-            for (int ax = 1; ax < elements_count; ax += 2)
-            {
-                // передаем в OpenGL информацию о вершине, участвующей в построении линий 
-                Gl.glVertex2d(GrapValuesArray[ax, 0], GrapValuesArray[ax, 1]);
-            }
-
-            // завершаем режим рисования 
-            Gl.glEnd();
-            // устанавливаем размер точек, равный 5 пикселям 
-            Gl.glPointSize(5);
-            // устанавливаем текущим цветом - красный цвет 
-            Gl.glColor3f(255, 0, 0);
-            // активируем режим вывода точек (GL_POINTS) 
-            Gl.glBegin(Gl.GL_POINTS);
-            // выводим красную точку, используя ту ячейку массива, до которой мы дошли (вычисляется в функции обработчике событий таймера) 
-            Gl.glVertex2d(GrapValuesArray[pointPosition, 0], GrapValuesArray[pointPosition, 1]);
-            // завершаем режим рисования 
-            Gl.glEnd();
-            // устанавливаем размер точек равный единице 
-            Gl.glPointSize(1);
-
-        }
-    */
-
-    /*
-
-        // функция, управляющая визуализацией сцены 
-        private void Draw()
-        {
-
-            // очистка буфера цвета и буфера глубины 
-            Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
-
-            // очищение текущей матрицы 
-            Gl.glLoadIdentity();
-
-            // установка черного цвета 
-            Gl.glColor3f(0, 0, 0);
-
-            // помещаем состояние матрицы в стек матриц 
-            Gl.glPushMatrix();
-
-            // выполняем перемещение в пространстве по осям X и Y 
-            Gl.glTranslated(15, 15, 0);
-
-            // активируем режим рисования (Указанные далее точки будут выводиться как точки GL_POINTS) 
-            Gl.glBegin(Gl.GL_POINTS);
-
-            // с помощью прохода вдумя циклами, создаем сетку из точек 
-            for (int ax = -15; ax < 15; ax++)
-            {
-                for (int bx = -15; bx < 15; bx++)
-                {
-                    // вывод точки 
-                    Gl.glVertex2d(ax, bx);
-                }
-            }
-
-            // завершение режима рисования примитивов 
-            Gl.glEnd();
-
-            // активируем режим рисования, каждые 2 последовательно вызванные команды glVertex 
-            // объединяются в линии 
-            Gl.glBegin(Gl.GL_LINES);
-
-            // далее мы рисуем координатные оси и стрелки на их концах 
-            Gl.glVertex2d(0, -15);
-            Gl.glVertex2d(0, 15);
-
-            Gl.glVertex2d(-15, 0);
-            Gl.glVertex2d(15, 0);
-
-            // вертикальная стрелка 
-            Gl.glVertex2d(0, 15);
-            Gl.glVertex2d(0.1, 14.5);
-            Gl.glVertex2d(0, 15);
-            Gl.glVertex2d(-0.1, 14.5);
-
-            // горизонтальная трелка 
-            Gl.glVertex2d(15, 0);
-            Gl.glVertex2d(14.5, 0.1);
-            Gl.glVertex2d(15, 0);
-            Gl.glVertex2d(14.5, -0.1);
-
-            // завершаем режим рисования 
-            Gl.glEnd();
-
-            // выводим подписи осей "x" и "y" 
-            PrintText2D(15.5f, 0, "x");
-            PrintText2D(0.5f, 14.5f, "y");
-
-            // вызываем функцию рисования графика 
-            DrawDiagram();
-
-            // возвращаем матрицу из стека 
-            Gl.glPopMatrix();
-
-            // выводим текст со значением координат возле курсора 
-            PrintText2D(devX * Mcoord_X + 0.2f,
-                (float)ScreenH - devY * Mcoord_Y + 0.4f,
-                "[ x: " + (devX * Mcoord_X - 15).ToString() +
-                " ; y: " + ((float)ScreenH - devY * Mcoord_Y - 15).ToString() + "]");
-
-            // устанавливаем красный цвет 
-            Gl.glColor3f(255, 0, 0);
-
-            // включаем режим рисования линий, для того чтобы нарисовать 
-            // линии от курсора мыши к координатным осям 
-            Gl.glBegin(Gl.GL_LINES);
-
-            Gl.glVertex2d(lineX, 15);
-            Gl.glVertex2d(lineX, lineY);
-            Gl.glVertex2d(15, lineY);
-            Gl.glVertex2d(lineX, lineY);
-
-            Gl.glEnd();
-
-            // дожидаемся завершения визуализации кадра 
-            Gl.glFlush();
-
-            // сигнал для обновление элемента реализующего визуализацию. 
-            AnT1.Invalidate();
-
-        }
-    }
-    */
    
 }
