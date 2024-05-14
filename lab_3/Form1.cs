@@ -42,6 +42,21 @@ namespace lab_3
         private double S, V0, f, angle, mass;
         private double x, minX, maxX, minY, maxY, minV, maxV, minEk, maxEk, minEp, maxEp, Vy;
 
+        private void PrintText2D(float x, float y, string text)
+        {
+            // устанавливаем позицию вывода растровых символов 
+            // в переданных координатах x и y. 
+            Gl.glRasterPos2f(x, y);
+
+            // в цикле foreach перебираем значения из массива text, 
+            // который содержит значение строки для визуализации 
+            foreach (char char_for_draw in text)
+            {
+                // символ C визуализируем с помощью функции glutBitmapCharacter, используя шрифт GLUT_BITMAP_9_BY_15. 
+                Glut.glutBitmapCharacter(Glut.GLUT_BITMAP_9_BY_15, char_for_draw);
+            }
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedItem = comboBox1.SelectedIndex + 2;
@@ -49,7 +64,8 @@ namespace lab_3
 
         private double H, g, total_time, F, ti = 0.05, bnc;
         
-        private void reBuild(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -98,33 +114,32 @@ namespace lab_3
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PointInGrap.Stop();
-            reBuild(sender, e );    
-            functionCalculation();// Подготовка данных для графика
-            PointInGrap.Start();
-        }
-
         private int pointPosition = 0;
         private int selectedItem;
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // инициализация библиотеки glut 
             Glut.glutInit();
+            // инициализация режима экрана 
             Glut.glutInitDisplayMode(Glut.GLUT_RGB | Glut.GLUT_DOUBLE);
 
+            // установка цвета очистки экрана (RGBA) 
             Gl.glClearColor(255, 255, 255, 1);
 
+            // установка порта вывода 
             Gl.glViewport(0, 0, AnT1.Width, AnT1.Height);
 
+            // активация проекционной матрицы 
             Gl.glMatrixMode(Gl.GL_PROJECTION);
+            // очистка матрицы 
             Gl.glLoadIdentity();
 
+            // определение параметров настройки проекции в зависимости от размеров сторон элемента AnT. 
             if ((double)AnT1.Width <= (double)AnT1.Height)
             {
-                ScreenW = 30.0;
+                ScreenW = 3.0;
                 ScreenH = 30.0 * (double)AnT1.Height / (double)AnT1.Width;
                 Glu.gluOrtho2D(0.0, ScreenW, 0.0, ScreenH);
             }
@@ -132,18 +147,23 @@ namespace lab_3
             {
                 ScreenW = 30.0 * (double)AnT1.Width / (double)AnT1.Height;
                 ScreenH = 30.0;
-                Glu.gluOrtho2D(0.0, 30.0 * (double)AnT1.Width / (double)AnT1.Height, 0.0, 30.0);
+                Glu.gluOrtho2D(0.0, ScreenH, 0.0, ScreenW);
             }
 
+            // сохранение коэффициентов, которые нам необходимы для перевода координат указателя в оконной системе в координаты, 
+            // принятые в нашей OpenGL сцене 
+            devX = (double)ScreenW / (double)AnT1.Width;
+            devY = (double)ScreenH / (double)AnT1.Height;
+
+            // установка объектно-видовой матрицы 
             Gl.glMatrixMode(Gl.GL_MODELVIEW);
             comboBox1.SelectedIndex = 0;
 
+            // старт счетчика, отвечающего за вызов функции визуализации сцены 
+            PointInGrap.Start();
+
         }
 
-        private double Radian(double angle)
-        {
-            return (Math.PI / 180.0) * angle;
-        }
 
         private void functionCalculation()
         {
@@ -228,65 +248,7 @@ namespace lab_3
             }
             // изменяем флаг, сигнализировавший о том, что координаты графика не вычислены 
             not_calculate = false;
-            /*
-            x = 1;
-            maxV = 0;
-            minV = 0;
-            maxY = 0;
-            minX = 0;
-            maxX = S * Math.Cos(Radian(angle));
-            maxEp = 0;
-            minEp = 0;
-            maxEk = 0;
-            minEk = 0;
-
-            GrapValuesArray = new double[99999, 6];
-            elements_count = 0;
-
-            double C = 9.8 * (Math.Sin(Radian(angle)) - f * Math.Sin(Radian(angle)));
-
-            GrapValuesArray[elements_count, 0] = 0;
-            GrapValuesArray[elements_count, 1] = S * Math.Sin(Radian(angle));
-            GrapValuesArray[elements_count, 2] = V0;
-            GrapValuesArray[elements_count, 3] = mass * 9.8 * S;
-            GrapValuesArray[elements_count, 4] = mass * V0 * V0 / 2;
-            if (GrapValuesArray[elements_count, 0] > maxX) maxX = GrapValuesArray[elements_count, 0];
-            if (GrapValuesArray[elements_count, 0] < minX) minX = GrapValuesArray[elements_count, 0];
-            if (GrapValuesArray[elements_count, 1] > maxY) maxY = GrapValuesArray[elements_count, 1];
-            if (GrapValuesArray[elements_count, 2] > maxV) maxV = GrapValuesArray[elements_count, 2];
-            if (GrapValuesArray[elements_count, 2] < minV) minV = GrapValuesArray[elements_count, 2];
-            if (GrapValuesArray[elements_count, 3] > maxEp) maxEp = GrapValuesArray[elements_count, 3];
-            if (GrapValuesArray[elements_count, 3] < minEp) minEp = GrapValuesArray[elements_count, 3];
-            if (GrapValuesArray[elements_count, 4] > maxEk) maxEk = GrapValuesArray[elements_count, 4];
-            if (GrapValuesArray[elements_count, 4] < minEk) minEk = GrapValuesArray[elements_count, 4];
-            elements_count++;
-
-            for (double t = 0.005; GrapValuesArray[elements_count - 1, 1] > 0; t += 0.005)
-            {
-                GrapValuesArray[elements_count, 2] = V0 + C * t;
-                x = GrapValuesArray[elements_count, 2] * t;
-                if (x >= S)
-                    break;
-
-                GrapValuesArray[elements_count, 0] = x * Math.Cos(Radian(angle));
-                GrapValuesArray[elements_count, 1] = (S - x) * Math.Sin(Radian(angle));
-                GrapValuesArray[elements_count, 3] = mass * 9.8 * (S - x);
-                GrapValuesArray[elements_count, 4] = mass * GrapValuesArray[elements_count, 2] * GrapValuesArray[elements_count, 2] / 2;
-
-                if (GrapValuesArray[elements_count, 0] > maxX) maxX = GrapValuesArray[elements_count, 0];
-                if (GrapValuesArray[elements_count, 0] < minX) minX = GrapValuesArray[elements_count, 0];
-                if (GrapValuesArray[elements_count, 1] > maxY) maxY = GrapValuesArray[elements_count, 1];
-                if (GrapValuesArray[elements_count, 2] > maxV) maxV = GrapValuesArray[elements_count, 2];
-                if (GrapValuesArray[elements_count, 2] < minV) minV = GrapValuesArray[elements_count, 2];
-                if (GrapValuesArray[elements_count, 3] > maxEp) maxEp = GrapValuesArray[elements_count, 3];
-                if (GrapValuesArray[elements_count, 3] < minEp) minEp = GrapValuesArray[elements_count, 3];
-                if (GrapValuesArray[elements_count, 4] > maxEk) maxEk = GrapValuesArray[elements_count, 4];
-                if (GrapValuesArray[elements_count, 4] < minEk) minEk = GrapValuesArray[elements_count, 4];
-                elements_count++;
-            }
-            minY = 0;
-            not_calculate = false;
-            */
+       
         }
 
 
@@ -365,8 +327,8 @@ namespace lab_3
             // активируем режим вывода точек (GL_POINTS) 
 
 
-            //if (V0 >= 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc), (float)((H) * Math.Sin(angle * Math.PI / 180)), "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc, (H) * Math.Sin(angle * Math.PI / 180)); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0.1); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), -0.1); Gl.glEnd(); }
-            //if (V0 < 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc + xMin), (float)yMax, "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc + xMin, yMax); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glEnd(); }
+            if (V0 >= 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc), (float)((H) * Math.Sin(angle * Math.PI / 180)), "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc, (H) * Math.Sin(angle * Math.PI / 180)); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0.1); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), -0.1); Gl.glEnd(); }
+            if (V0 < 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc + minX), (float)maxY, "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc + minX, maxY); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glEnd(); }
             
             
             //if (true) 
