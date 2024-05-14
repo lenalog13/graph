@@ -329,8 +329,6 @@ namespace lab_3
 
             if (V0 >= 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc), (float)((H) * Math.Sin(angle * Math.PI / 180)), "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc, (H) * Math.Sin(angle * Math.PI / 180)); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0.1); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), -0.1); Gl.glEnd(); }
             if (V0 < 0) { PrintText2D((float)(bnc + (H) * Math.Cos(angle * Math.PI / 180)), 0.15f, "X"); PrintText2D((float)(bnc + minX), (float)maxY, "Y"); Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc + minX, maxY); Gl.glVertex2d(bnc + (H) * Math.Cos(angle * Math.PI / 180), 0); Gl.glEnd(); }
-            
-            
             //if (true) 
             //{
             //    Gl.glBegin(Gl.GL_LINES); Gl.glVertex2d(bnc + xMin, yMax); Gl.glVertex2d(bnc + xMin+xMax, yMax+yMax); Gl.glEnd();
@@ -350,6 +348,8 @@ namespace lab_3
             // завершаем режим рисования 
             Gl.glEnd();
             // устанавливаем размер точек равный единице
+
+
 
         }
 
